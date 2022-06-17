@@ -99,21 +99,16 @@ public class BufferedChannelTest {
     public void testRead(){
         try{
 
-            BookKeeper bk = new BookKeeper("servers");
             int copied=this.bc.read(this.destBuf, this.pos, this.length);
-            System.out.println("no exc "+ copied);
             Assert.assertEquals(copied, this.exp);
         }
         catch(NullPointerException ne){
-            System.out.println("ne");
             Assert.assertTrue(this.expectedNullPointer);
         }
         catch(IOException ioe){
-            System.out.println("ioe");
             Assert.assertTrue(this.expectedIO);
         }
         catch(IllegalArgumentException ie){
-            System.out.println("ie");
             Assert.assertTrue(this.expectedIllegalArgument);
         }
         catch(Exception e){
