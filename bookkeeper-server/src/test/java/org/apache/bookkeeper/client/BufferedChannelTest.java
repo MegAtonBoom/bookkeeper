@@ -26,6 +26,8 @@ public class BufferedChannelTest {
     private int buffSize=256;
     private File tmpFile;;
     private FileChannel fc;
+
+    //tested instance
     private BufferedChannel bc;
 
     //method params
@@ -33,7 +35,7 @@ public class BufferedChannelTest {
     private int pos;
     private int length;
 
-    //expected
+    //expected result
     private int exp;
 
     private boolean expectedIllegalArgument;

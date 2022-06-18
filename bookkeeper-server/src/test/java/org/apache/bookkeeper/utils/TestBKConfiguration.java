@@ -1,6 +1,7 @@
-package org.apache.bookkeeper.client.utils;
+package org.apache.bookkeeper.utils;
 
 //IT ORIGINALLY WAS AN APACHE-BOOKKEEPER TEST CLASS
+
 
 import java.net.NetworkInterface;
 import java.net.SocketException;
