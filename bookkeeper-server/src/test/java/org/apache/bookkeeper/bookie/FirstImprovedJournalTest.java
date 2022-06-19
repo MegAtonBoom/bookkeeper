@@ -18,7 +18,7 @@ import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
 @RunWith(Parameterized.class)
-public class JournalTest {
+public class FirstImprovedJournalTest {
 
     private String juPath;
     private String lgPath;
@@ -83,10 +83,13 @@ public class JournalTest {
                 { ParamType.VALID,       ParamType.VALID,           ParamType.VALID,         false,         false },
                 { ParamType.NOT_VALID,   ParamType.NOT_VALID,       ParamType.VALID,     false,         true },
 
+                //added to improve badua coverage
+                { ParamType.VALID,       ParamType.VALID0,           ParamType.VALID,         false,         false },
+                { ParamType.NOT_VALID,   ParamType.NOT_VALID,       ParamType.VALID,     false,         true },
         });
     }
 
-    public JournalTest(ParamType id, ParamType pos, ParamType scanner, boolean expectedIO, boolean expectedNullPointer) throws Exception {
+    public FirstImprovedJournalTest(ParamType id, ParamType pos, ParamType scanner, boolean expectedIO, boolean expectedNullPointer) throws Exception {
         configure(id, pos, scanner, expectedIO, expectedNullPointer);
     }
 
@@ -104,6 +107,7 @@ public class JournalTest {
         }
         switch(pos){
             case VALID: this.pos = 1; break;
+            case VALID0: this.pos = -1; break;
             default: this.pos = this.journal.maxJournalSize+1;
         }
         this.js=getScanner(scanner);
@@ -154,7 +158,7 @@ public class JournalTest {
     }
 
     @After
-    public void tearDown() {
+    public void tearDown() throws IOException {
         this.bookie.shutdown();
         deleteDir(this.juDir);
         deleteDir(this.lgDir);
@@ -162,6 +166,7 @@ public class JournalTest {
     }
 
     private void deleteDir(File dir) {
+
         if(dir.isDirectory()) {
             File[] files = dir.listFiles();
 
@@ -178,6 +183,7 @@ public class JournalTest {
 
     private enum ParamType{
         VALID,
+        VALID0,
         NOT_VALID,
         NULL,
     }

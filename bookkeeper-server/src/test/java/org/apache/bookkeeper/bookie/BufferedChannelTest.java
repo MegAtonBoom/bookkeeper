@@ -1,16 +1,18 @@
-package org.apache.bookkeeper.client;
+package org.apache.bookkeeper.bookie;
 
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.buffer.UnpooledByteBufAllocator;
 import org.apache.bookkeeper.bookie.BufferedChannel;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.channels.FileChannel;
@@ -70,8 +72,12 @@ public class BufferedChannelTest {
             default: this.destBuf = null; break;
         }
 
-        this.tmpFile = File.createTempFile("file", "log");
-        this.tmpFile.deleteOnExit();
+        File currentDir = new File(".\\");
+        this.tmpFile = new File(currentDir+"\\"+"test.txt");
+
+        FileWriter Writer = new FileWriter(this.tmpFile);
+        Writer.write("");
+        Writer.close();
 
         this.fc = new RandomAccessFile(tmpFile, "rw").getChannel();
 
@@ -101,7 +107,6 @@ public class BufferedChannelTest {
     public void testRead(){
         try{
 
-
             int copied=this.bc.read(this.destBuf, this.pos, this.length);
             Assert.assertEquals(copied, this.exp);
         }
@@ -125,6 +130,11 @@ public class BufferedChannelTest {
         VALID,
         NULL,
         EMPTY;
+    }
+
+    @After
+    public void tearDown(){
+        this.tmpFile.deleteOnExit();
     }
 
 
