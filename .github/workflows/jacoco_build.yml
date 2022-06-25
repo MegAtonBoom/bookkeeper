@@ -1,4 +1,4 @@
-name: Maven and SonarCloud
+name: CI/CD Control flow coverage (jacoco) for Bookkeeper
 on:
   push:
     branches:

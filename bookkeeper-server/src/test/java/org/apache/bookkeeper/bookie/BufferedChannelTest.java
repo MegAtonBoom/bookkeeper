@@ -4,7 +4,6 @@ package org.apache.bookkeeper.bookie;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.buffer.UnpooledByteBufAllocator;
-import org.apache.bookkeeper.bookie.BufferedChannel;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
@@ -40,7 +39,7 @@ public class BufferedChannelTest {
     //expected result
     private int exp;
 
-    private boolean expectedIllegalArgument;
+    private boolean expectedArgumentExc;
     private boolean expectedNullPointer;
     private boolean expectedIO;
 
@@ -54,7 +53,7 @@ public class BufferedChannelTest {
     private void configure(BytebufType bbt, int pos, int length, int exp) throws IOException {
 
         if(bbt==BytebufType.NULL) this.expectedNullPointer = true;
-        if(pos<0) this.expectedIllegalArgument = true;
+        if(pos<0 || pos>this.buffSize) this.expectedArgumentExc = true;
         if( length>this.buffSize || length> (this.buffSize-pos)) this.expectedIO = true;
 
         this.writeBuf = Unpooled.buffer(0, this.buffSize);
@@ -91,13 +90,25 @@ public class BufferedChannelTest {
     public static Collection parameters() {
         return Arrays.asList(new Object[][]{
                 //ByteBuf type          pos         length     expected return
-                {BytebufType.NULL,     -1,          5,         0},
-                {BytebufType.VALID,     257,        -10,       0},
+                {BytebufType.NULL,     -1,          1,         0},
+                {BytebufType.VALID,     -1,         -1,       0},
+                {BytebufType.EMPTY,     -1,          257,       0},
+
+                {BytebufType.VALID,     257,        -1,       0},
+                {BytebufType.NULL,     257,          1,       0},
+                {BytebufType.VALID,     257,          257,       0},
+
                 {BytebufType.EMPTY,     0,          257,       0},
+                {BytebufType.EMPTY,     0,          -1,       0},
+                {BytebufType.NULL,     0,          1,       0},
+
 
                 //added to improve jacoco coverage
-                {BytebufType.VALID,     231,          25,      25},
-                {BytebufType.NULL,      0,          25,        0}
+                {BytebufType.VALID,     255,          1,      1},
+                {BytebufType.VALID,     0,          1,      256},
+                {BytebufType.NULL,      0,          1,        0}
+
+
 
         });
     }
@@ -116,11 +127,8 @@ public class BufferedChannelTest {
         catch(IOException ioe){
             Assert.assertTrue(this.expectedIO);
         }
-        catch(IllegalArgumentException ie){
-            Assert.assertTrue(this.expectedIllegalArgument);
-        }
-        catch(Exception e){
-            e.printStackTrace();
+        catch(Exception e) {
+            Assert.assertTrue(this.expectedArgumentExc);
         }
 
     }

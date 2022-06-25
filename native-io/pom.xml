@@ -49,11 +49,11 @@
           <target>1.8</target>
           <compilerArgs>
             <!-- Object.finalize() is deprecated at java 9 -->
-            <!-- <compilerArg>-Werror</compilerArg> -->
-            <compilerArg>-Xlint:deprecation</compilerArg>
+             <compilerArg>-Werror</compilerArg>
+            <compilerArg>-Xlint:deprecation</compilerArg>-->
             <compilerArg>-Xlint:unchecked</compilerArg>
             <!-- https://issues.apache.org/jira/browse/MCOMPILER-205 -->
-            <compilerArg>-Xpkginfo:always</compilerArg>
+           <compilerArg>-Xpkginfo:always</compilerArg>
           </compilerArgs>
         </configuration>
       </plugin>

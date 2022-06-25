@@ -81,7 +81,7 @@ public class JournalTest {
 
                 //added to improve jacoco coverage
                 { ParamType.VALID,       ParamType.VALID,           ParamType.VALID,         false,         false },
-                { ParamType.NOT_VALID,   ParamType.NOT_VALID,       ParamType.VALID,     false,         true },
+                { ParamType.NOT_VALID,   ParamType.NOT_VALID,       ParamType.VALID,         false,         true }
 
         });
     }

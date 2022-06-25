@@ -77,15 +77,15 @@ public class FirstImprovedJournalTest {
                 //id parameter type      pos parameter type         scanner parameter type   expected IOE   expected NPE
                 { ParamType.VALID,       ParamType.NOT_VALID,       ParamType.NULL,          true,          true },
                 { ParamType.NOT_VALID,   ParamType.VALID,           ParamType.VALID,         false,         true },
-                { ParamType.NOT_VALID,   ParamType.NOT_VALID,       ParamType.NOT_VALID,     false,         true },
+                { ParamType.NOT_VALID,   ParamType.NOT_VALID,       ParamType.NOT_VALID,     true,         true },
 
                 //added to improve jacoco coverage
                 { ParamType.VALID,       ParamType.VALID,           ParamType.VALID,         false,         false },
-                { ParamType.NOT_VALID,   ParamType.NOT_VALID,       ParamType.VALID,     false,         true },
+                { ParamType.NOT_VALID,   ParamType.NOT_VALID,       ParamType.VALID,     true,         true },
 
                 //added to improve badua coverage
                 { ParamType.VALID,       ParamType.VALID0,           ParamType.VALID,         false,         false },
-                { ParamType.NOT_VALID,   ParamType.NOT_VALID,       ParamType.VALID,     false,         true },
+                //{ ParamType.NOT_VALID,   ParamType.NOT_VALID,       ParamType.VALID,     true,         true },
         });
     }
 
