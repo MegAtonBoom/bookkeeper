@@ -3,7 +3,12 @@
 
 name:  CI/CD Mutation testing (pit) for Bookkeeper
 
-on: workflow_dispatch
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    types: [opened, synchronize, reopened]
 
 jobs:
   build:
