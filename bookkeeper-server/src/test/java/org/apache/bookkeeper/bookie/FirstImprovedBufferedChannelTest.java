@@ -150,7 +150,7 @@ public class FirstImprovedBufferedChannelTest{
 
                 //added to improve ba-dua coverage and cover new test cases
 
-                {Position.SUP,      SourceType.FILLED,     BytebufType.VALID,     0,          1,        256},
+                {Position.SUP,      SourceType.FILLED,     BytebufType.NULL,     0,          1,        0},
                 {Position.SUP,      SourceType.EMPTY,      BytebufType.VALID,     255,          1,        0},
                 {Position.SUP,      SourceType.NULL,       BytebufType.VALID,     255,          1,        0},
                 {Position.SUP,      SourceType.NOT_VALID,  BytebufType.VALID,     255,          1,        0},
@@ -158,7 +158,7 @@ public class FirstImprovedBufferedChannelTest{
                 //improve pit-test mutation score
 
                 {Position.SUP,      SourceType.EMPTY,      BytebufType.VALID,     255,          1,        0},
-                {Position.SUP,      SourceType.FILLED,     BytebufType.NULL,     0,          1,        0},
+                {Position.SUP,      SourceType.FILLED,     BytebufType.VALID,     0,          1,        256},
                 {Position.SUP,      SourceType.EMPTY,      BytebufType.EMPTY,     -1,          -1,        0},
 
 
