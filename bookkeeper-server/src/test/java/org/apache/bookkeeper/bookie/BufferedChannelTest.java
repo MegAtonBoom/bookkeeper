@@ -105,7 +105,7 @@ public class BufferedChannelTest {
 
                 //added to improve jacoco coverage
                 {BytebufType.VALID,     255,          1,      1},
-                {BytebufType.VALID,     0,          1,      256},
+                //{BytebufType.VALID,     0,          1,      1},
                 {BytebufType.NULL,      0,          1,        0}
 
 

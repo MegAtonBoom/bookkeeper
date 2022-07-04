@@ -6,6 +6,7 @@ import io.netty.buffer.Unpooled;
 import io.netty.buffer.UnpooledByteBufAllocator;
 import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -145,7 +146,7 @@ public class FirstImprovedBufferedChannelTest{
 
                 //added to improve jacoco coverage
                 {Position.INF,      SourceType.FILLED,      BytebufType.VALID,     255,          1,      1},
-                {Position.INF,      SourceType.FILLED,      BytebufType.VALID,     0,          1,      256},
+                //{Position.INF,      SourceType.FILLED,      BytebufType.VALID,     0,          1,      1},
                 {Position.INF,      SourceType.FILLED,      BytebufType.NULL,      0,          1,        0},
 
                 //added to improve ba-dua coverage and cover new test cases
@@ -158,7 +159,7 @@ public class FirstImprovedBufferedChannelTest{
                 //improve pit-test mutation score
 
                 {Position.SUP,      SourceType.EMPTY,      BytebufType.VALID,     255,          1,        0},
-                {Position.SUP,      SourceType.FILLED,     BytebufType.VALID,     0,          1,        256},
+                //{Position.SUP,      SourceType.FILLED,     BytebufType.VALID,     0,          1,        1},
                 {Position.SUP,      SourceType.EMPTY,      BytebufType.EMPTY,     -1,          -1,        0},
 
 

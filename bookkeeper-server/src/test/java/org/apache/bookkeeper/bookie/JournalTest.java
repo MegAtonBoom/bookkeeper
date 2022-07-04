@@ -2,9 +2,7 @@ package org.apache.bookkeeper.bookie;
 
 import org.apache.bookkeeper.conf.ServerConfiguration;
 import org.apache.bookkeeper.utils.TestBKConfiguration;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import java.io.File;
@@ -40,9 +38,7 @@ public class JournalTest {
     long pos;
     Journal.JournalScanner js;
 
-
     private void initialConfig() throws Exception {
-
         String currentPath = new File(".\\").getCanonicalPath();
         this.juPath = currentPath+"\\"+this.ju;
         this.lgPath = currentPath+"\\"+this.lg;
